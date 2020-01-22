@@ -1,0 +1,18 @@
+{
+  "name": "excelcomparision",
+  "version": "1.0.0",
+  "description": "To compare two excels",
+  "main": "Test.js",
+  "scripts": {
+    "test": "node Test.js",
+    "build-code":"tsc -w"
+  },
+  "keywords": [
+    "Excel",
+    "Compare",
+    "Excel"
+  ],
+  "author": "Puneer",
+  "license": "ISC"
+  
+}
