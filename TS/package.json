@@ -1,7 +1,7 @@
 {
   "name": "excelcomparision",
   "version": "1.0.0",
-  "description": "To compare two excels",
+  "description": "To read excel file and multiple sheets",
   "main": "Test.js",
   "scripts": {
     "test": "node Test.js",

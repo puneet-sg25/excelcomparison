@@ -10,22 +10,29 @@ var wb2: XLSX.WorkBook = XLSX.readFile("./SampleAgain.xlsx");
 var W1WorkSheets = [];
 var W2WorkSheets = [];
 
+var promise1 = new Promise((resolve, reject) => {
         wb.xlsx.readFile("./Sample.xlsx").then(function(){
             for (var i = 0; i < sheetNames1.length; ++i) {
                 let sheetName = sheetNames1[i]
                 W1WorkSheets.push(wb.getWorksheet(sheetName))
             }
-
-        wb.xlsx.readFile("./SampleAgain.xlsx").then(function(){
-            for (var i = 0; i < sheetNames2.length; ++i) {
-                    let sheetName = sheetNames2[i]
-                    W2WorkSheets.push(wb.getWorksheet(sheetName))
-                }
-                fi();
-            }); 
+            resolve(W1WorkSheets);
         });
+    return promise1;
+});
 
-function fi() {
+var promise2 = new Promise((resolve, reject) => {
+    wb.xlsx.readFile("./SampleAgain.xlsx").then(function(){
+        for (var i = 0; i < sheetNames2.length; ++i) {
+            let sheetName = sheetNames2[i]
+            W2WorkSheets.push(wb.getWorksheet(sheetName))
+        }
+        resolve(W2WorkSheets);
+    });
+return promise2;
+});
+
+Promise.all([promise1, promise2]).then(function(values) {
     
     var flag = 0;
     var dub = 0;
@@ -61,7 +68,8 @@ function fi() {
             }
         }
         if(flag == 1){
-                for(let i=0;i<arrayOfEror.length;i++){
+            console.log("Different files at position -->");
+            for(let i=0;i<arrayOfEror.length;i++){
                 console.log(arrayOfEror[i]);
             }
         }
@@ -70,5 +78,9 @@ function fi() {
         }
     }else{
         console.log("Different file size");
-    }      
-};
+    }
+    
+       
+}).catch(function(){
+    console.log("all files not read ")
+});
