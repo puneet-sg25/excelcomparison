@@ -36,67 +36,28 @@ function fi() {
     if (flag == 0) {
         console.log("All TC's are same in Business Flow and its keyword's sheets");
     }
+    for (var i = 1; i < sheetNames1.length; ++i) {
+        for (var a = 2; a <= W1WorkSheets[i].rowCount; a++) {
+            for (var b = 2; b <= W1WorkSheets[i].columnCount; b++) {
+                if (W1WorkSheets[i].getRow(a).getCell(b).value == null) {
+                    continue;
+                }
+                if (sheetNames1[i] != W1WorkSheets[0].getRow(a).getCell(b).value || sheetNames1[i] != W1WorkSheets[i].getRow(a).getCell(b).value) {
+                    // console.log("values equal");
+                    dub = 1;
+                    var error = sheetNames1[0] + ' and ' + sheetNames1[i] + ' are diffrent at row ' + (a) + ', column ' + (b);
+                    arrayOfEror.push(error);
+                }
+            }
+        }
+    }
+    if (dub == 1) {
+        for (var i_2 = 0; i_2 < arrayOfEror.length; i_2++) {
+            console.log(arrayOfEror[i_2]);
+        }
+    }
+    else {
+        console.log("All sheets are ok");
+    }
 }
 ;
-/*
-     if(sh1.rowCount == sh2.rowCount == sh3.rowCount == sh4.rowCount == sh5.rowCount == sh6.rowCount && sh1.columnCount == sh2.columnCount == sh3.columnCount == sh4.columnCount== sh5.columnCount == sh6.columnCount){
-            for(let i=2;i<=sh1.rowCount;i++){
-                for(let j=1;j<=sh1.columnCount;j++){
-                    if(sh1.getRow(i).getCell(j).value == sh2.getRow(i).getCell(j).value){
-                        console.log(sh2.getRow(i).getCell(j).value);
-                        if(sh2.getRow(i).getCell(j).value == null){
-             
-                            j++;
-                        }
-                    }
-                }
-            }
-
-            for(let i=2;i<=sh1.rowCount;i++){
-                for(let j=1;j<=sh1.columnCount;j++){
-                    if(sh1.getRow(i).getCell(j).value == sh3.getRow(i).getCell(j).value){
-                        console.log(sh3.getRow(i).getCell(j).value);
-                        if(sh3.getRow(i).getCell(j).value == null){
-             
-                            j++;
-                        }
-                    }
-                }
-            }
-            
-             for(let i=2;i<=sh1.rowCount;i++){
-                for(let j=1;j<=sh1.columnCount;j++){
-                    if(sh1.getRow(i).getCell(j).value == sh4.getRow(i).getCell(j).value){
-                        console.log(sh4.getRow(i).getCell(j).value);
-                        if(sh4.getRow(i).getCell(j).value == null){
-             
-                            j++;
-                        }
-                    }
-                }
-            }
-
-             for(let i=2;i<=sh1.rowCount;i++){
-                for(let j=1;j<=sh1.columnCount;j++){
-                    if(sh1.getRow(i).getCell(j).value == sh5.getRow(i).getCell(j).value){
-                        console.log(sh5.getRow(i).getCell(j).value);
-                        if(sh5.getRow(i).getCell(j).value == null){
-             
-                            j++;
-                        }
-                    }
-                }
-            }
-            
-             for(let i=2;i<=sh1.rowCount;i++){
-                for(let j=1;j<=sh1.columnCount;j++){
-                    if(sh1.getRow(i).getCell(j).value == sh6.getRow(i).getCell(j).value){
-                        console.log(sh6.getRow(i).getCell(j).value);
-                        if(sh6.getRow(i).getCell(j).value == null){
-             
-                            j++;
-                        }
-                    }
-                }
-            }
-        }*/
